@@ -1,9 +1,9 @@
 import React from "react";
-import "./button.css";
+import styles from "./Button.module.css";
 
 export const Button = ({ label, ...props }) => {
   return (
-    <button className="button" {...props} type="button">
+    <button className={styles.button} {...props} type="button">
       {label}
     </button>
   );
