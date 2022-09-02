@@ -4,3 +4,15 @@
   border-radius: 4px;
   color: white;
 }
+
+.button:hover {
+  background: #5835B0;
+}
+
+.button:active {
+  background: #472C8A;
+}
+
+.button:focus {
+  border: 2px solid rgba(17, 17, 17, 0.48);
+}
