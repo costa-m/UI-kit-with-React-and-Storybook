@@ -1,18 +1,39 @@
 .button {
   padding: 10px 20px;
-  background: #6e41e2;
   border-radius: 4px;
+}
+
+.buttonPrimary {
+  composes: button;
+  background: #6e41e2;
   color: white;
 }
 
-.button:hover {
-  background: #5835B0;
+.buttonPrimary:hover {
+  background: #5835b0;
 }
 
-.button:active {
-  background: #472C8A;
+.buttonPrimary:active {
+  background: #472c8a;
 }
 
-.button:focus {
+.buttonPrimary:focus {
+  border: 2px solid rgba(17, 17, 17, 0.48);
+}
+
+.buttonSecondary {
+  composes: button;
+  background: white;
+  color: #6e41e2;
+  border: 2px solid #6e41e2;
+}
+
+.buttonSecondary:hover {
+  background: rgba(110, 65, 226, 0.04);
+}
+.buttonSecondary:active {
+  background: rgba(110, 65, 226, 0.16);
+}
+.buttonSecondary:focus {
   border: 2px solid rgba(17, 17, 17, 0.48);
 }

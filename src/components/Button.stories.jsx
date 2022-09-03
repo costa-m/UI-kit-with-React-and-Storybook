@@ -18,3 +18,13 @@ PrimaryWithFocusState.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   await canvas.getByRole("button").focus();
 };
+
+export const Secondary = Template.bind({});
+Secondary.args = { label: "Button", mode: "secondary" };
+
+export const SecondaryWithFocusState = Template.bind({});
+SecondaryWithFocusState.args = { label: "Button", mode: "secondary" };
+SecondaryWithFocusState.play = async ({ canvasElement }) => {
+  const canvas = within(canvasElement);
+  await canvas.getByRole("button").focus();
+};
