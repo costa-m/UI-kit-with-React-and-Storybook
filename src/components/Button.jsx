@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./Button.module.css";
+import propTypes from "prop-types";
 
 export const Button = ({ mode, label, ...props }) => {
   // default mode for the button
@@ -13,4 +14,19 @@ export const Button = ({ mode, label, ...props }) => {
       {label}
     </button>
   );
+};
+
+Button.propTypes = {
+  /**
+   * Mode of the button
+   */
+  mode: propTypes.oneOf("primary", "secondary"),
+  /**
+   * Contents of the button
+   */
+  label: propTypes.string,
+};
+
+Button.defaultProps = {
+  mode: "primary",
 };

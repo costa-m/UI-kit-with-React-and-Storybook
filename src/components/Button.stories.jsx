@@ -5,6 +5,12 @@ import { within } from "@storybook/testing-library";
 export default {
   title: "Button",
   component: Button,
+  argTypes: {
+    mode: {
+      options: ["primary", "secondary"],
+      control: { type: "radio" },
+    },
+  },
 };
 
 const Template = (args) => <Button {...args} />;
