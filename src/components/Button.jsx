@@ -20,7 +20,7 @@ Button.propTypes = {
   /**
    * Mode of the button
    */
-  mode: propTypes.oneOf("primary", "secondary"),
+  mode: propTypes.oneOf(["primary", "secondary"]),
   /**
    * Contents of the button
    */
