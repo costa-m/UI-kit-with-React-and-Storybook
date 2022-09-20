@@ -7,6 +7,8 @@ export const Button = ({ mode, label, ...props }) => {
   let className = styles.buttonPrimary;
   if (mode === "secondary") {
     className = styles.buttonSecondary;
+  } else if (mode === "secondary white") {
+    className = styles.buttonSecondaryWhite;
   }
 
   return (
@@ -20,7 +22,7 @@ Button.propTypes = {
   /**
    * Mode of the button
    */
-  mode: propTypes.oneOf(["primary", "secondary"]),
+  mode: propTypes.oneOf(["primary", "secondary", "secondary white"]),
   /**
    * Contents of the button
    */

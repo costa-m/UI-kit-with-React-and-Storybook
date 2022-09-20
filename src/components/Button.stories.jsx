@@ -7,10 +7,26 @@ export default {
   component: Button,
   argTypes: {
     mode: {
-      options: ["primary", "secondary"],
+      options: ["primary", "secondary", "secondary white"],
       control: { type: "radio" },
     },
   },
+  parameters: {
+    backgrounds: {
+      values: [
+        { name: "Primary", value: "#6e41e2" },
+        { name: "White", value: "white" },
+        { name: "Red", value: "#db524e" },
+      ],
+    },
+  },
+  decorators: [
+    (Story) => (
+      <div style={{ padding: "3em" }}>
+        <Story />
+      </div>
+    ),
+  ],
 };
 
 const Template = (args) => <Button {...args} />;
@@ -34,3 +50,6 @@ SecondaryWithFocusState.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   await canvas.getByRole("button").focus();
 };
+
+export const SecondaryWhite = Template.bind({});
+SecondaryWhite.args = { label: "Button", mode: "secondary white" };

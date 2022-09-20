@@ -29,7 +29,7 @@
 
 .buttonSecondary {
   composes: button;
-  background: white;
+  background: transparent;
   color: #6e41e2;
   border: 2px solid #6e41e2;
 }
@@ -41,5 +41,22 @@
   background: rgba(110, 65, 226, 0.16);
 }
 .buttonSecondary:focus {
+  border: 2px solid rgba(17, 17, 17, 0.48);
+}
+
+.buttonSecondaryWhite {
+  composes: button;
+  color: white;
+  background: transparent;
+  border: 2px solid #FFFFFF;
+}
+
+.buttonSecondaryWhite:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+.buttonSecondaryWhite:active {
+  background: rgba(255, 255, 255, 0.16);
+}
+.buttonSecondaryWhite:focus {
   border: 2px solid rgba(17, 17, 17, 0.48);
 }
