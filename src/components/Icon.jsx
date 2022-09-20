@@ -1,7 +1,7 @@
 import React from "react";
 import propTypes from "prop-types";
 
-export const Icon = ({ iconPath, size, ...props }) => {
+export const Icon = ({ iconPath, size, fill, ...props }) => {
   return (
     <svg
       {...props}
@@ -11,6 +11,7 @@ export const Icon = ({ iconPath, size, ...props }) => {
       width={size}
       height={size}
       xmlns="http://www.w3.org/2000/svg"
+      fill={fill}
     >
       <path d={iconPath}></path>
     </svg>
@@ -26,6 +27,10 @@ Icon.propTypes = {
    * size in pixels
    */
   size: propTypes.number,
+  /**
+  * color of icon
+  */
+  fill: propTypes.string,
 };
 
 Icon.defaultProps = {
