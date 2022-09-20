@@ -1,0 +1,51 @@
+.island {
+  width: 360px;
+  padding: 20px;
+  background: #6e41e2;
+  border-radius: 8px;
+}
+
+.badgeDiv {
+  margin-bottom: 5px;
+}
+
+.heading {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 28px;
+
+  margin: 0;
+
+  color: #ffffff;
+}
+
+.paragraph {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+
+  margin: 0;
+
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.footer {
+  margin-top: 32px;
+
+  display: flex;
+  align-items: center;
+}
+.button {
+  margin-right: 24px;
+}
+
+.iconLabel {
+  margin-right: 12px;
+}
+.icon {
+  margin-right: 4px;
+}
