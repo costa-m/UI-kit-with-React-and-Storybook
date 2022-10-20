@@ -1,0 +1,95 @@
+.select {
+  display: inline-block;
+
+  /* This will create a positioning context for the list of options; */
+  position: relative;
+
+  /* TODO: TEMPORARY - REMOVE AND ADD IT TO STORY*/
+  width: 350px;
+
+  border-radius: 4px;
+
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+
+  box-shadow: 0px 4px 4px rgba(51, 51, 51, 0.04),
+    0px 4px 16px rgba(51, 51, 51, 0.08);
+}
+
+.select.active,
+.select:focus {
+  /* removes browser's default focus style */
+  outline: none;
+
+  /* This box-shadow property is not exactly required, however it's imperative to ensure
+     active state is visible, especially to keyboard users, that we use it as a default value. */
+  box-shadow: 0px 4px 4px rgba(51, 51, 51, 0.04),
+    0px 4px 24px rgba(51, 51, 51, 0.24);
+}
+
+.optionList {
+  /* keep list of items out of the normal flow of the documet */
+  position: absolute;
+  /* <percentage>s of the height of the containing block */
+  top: 115%;
+  left: 0;
+
+  /* reset the default style of the ul element */
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  z-index: 2; /* We explicitly said the list of options will always be on top of the down arrow */
+
+  /* keep list of items as large as the selection display */
+  min-width: 100%;
+
+  /* overflow behaviour for list*/
+  max-height: 200px;
+  overflow-y: auto; /* scrollbar appears only if overflow happens */
+  overflow-x: hidden;
+
+  box-shadow: 0px 4px 4px rgba(51, 51, 51, 0.04),
+    0px 14px 24px rgba(51, 51, 51, 0.12);
+}
+
+.optionListHidden {
+  max-height: 0;
+  visibility: hidden;
+}
+
+.selectItem {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+
+  color: rgba(17, 17, 17);
+  background: white;
+
+  padding: 16px;
+
+  display: flex;
+  justify-content: space-between;
+
+  box-sizing: border-box;
+}
+
+.selectItemHighlight {
+  composes: selectItem;
+  background: #f1f1f1;
+}
+
+.selectItemDefault {
+  composes: selectItem;
+  color: rgba(17, 17, 17, 0.48);
+
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
