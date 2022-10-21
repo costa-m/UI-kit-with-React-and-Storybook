@@ -4,13 +4,13 @@ import { Icon } from "./Icon";
 import { ICONS } from "./assets/icon_paths";
 
 /*
- * The logic for this component was adapted from
+ * The logic and style for this component was adapted from
  * https://developer.mozilla.org/en-US/docs/Learn/Forms/How_to_build_custom_form_controls
  */
 export const Select = ({ mode, label, ...props }) => {
-  const initialOptionClass = {
-    grapefruit: "item",
-    lime: "item",
+  const initialOptionHighlight = {
+    grapefruit: false,
+    lime: false,
   };
 
   const initialOptionClick = {
@@ -18,7 +18,9 @@ export const Select = ({ mode, label, ...props }) => {
     lime: false,
   };
 
-  const [optionClass, setOptionClass] = useState(initialOptionClass);
+  const [optionHighlight, setOptionHighlight] = useState(
+    initialOptionHighlight
+  );
   const [optionClick, setOptionClick] = useState(initialOptionClick);
 
   const [optionListIsHidden, setListIsHidden] = useState(true);
@@ -27,9 +29,9 @@ export const Select = ({ mode, label, ...props }) => {
 
   const highlightOption = (event) => {
     const name = event.target.getAttribute("value");
-    setOptionClass({
-      ...initialOptionClass,
-      [name]: "itemHighlight",
+    setOptionHighlight({
+      ...initialOptionHighlight,
+      [name]: true,
     });
   };
 
@@ -50,8 +52,8 @@ export const Select = ({ mode, label, ...props }) => {
 
   const closeOptionList = () => {
     setListIsHidden(true);
-    setOptionClass({
-      ...initialOptionClass,
+    setOptionHighlight({
+      ...initialOptionHighlight,
     });
   };
 
@@ -59,6 +61,33 @@ export const Select = ({ mode, label, ...props }) => {
     if (event.key === "Escape") {
       event.currentTarget.blur();
     }
+  };
+
+  const SelectItemChosen = () => {
+    return (
+      <div onClick={toggleOptionList} className={styles.selectItemChosen}>
+        <div className={styles.chosenValueWrapper}>
+          <div className={styles.smallDefault}>{label}</div>
+          {chosenOption}
+        </div>
+        <Icon
+          iconPath={optionListIsHidden ? ICONS.ARROW_DOWN : ICONS.ARROW_UP}
+          size={24}
+        />
+      </div>
+    );
+  };
+
+  const SelectItemDefault = () => {
+    return (
+      <div onClick={toggleOptionList} className={styles.selectItemDefault}>
+        {chosenOption}
+        <Icon
+          iconPath={optionListIsHidden ? ICONS.ARROW_DOWN : ICONS.ARROW_UP}
+          size={24}
+        />
+      </div>
+    );
   };
 
   return (
@@ -70,29 +99,23 @@ export const Select = ({ mode, label, ...props }) => {
       {...props}
     >
       {/* container for current value */}
-      <div onClick={toggleOptionList} className={styles.selectItemDefault}>
-        {chosenOption}
-        <Icon
-          iconPath={optionListIsHidden ? ICONS.ARROW_DOWN : ICONS.ARROW_UP}
-          size={24}
-        />
-      </div>
+      {chosenOption === label ? <SelectItemDefault /> : <SelectItemChosen />}
       {optionListIsHidden || (
         <ul
           onMouseOver={highlightOption}
           onClick={selectOption}
-          className={styles.optionList}
+          className={styles.selectList}
         >
           {/* container for other options */}
           <SelectItem
-            className={optionClass.grapefruit}
+            isHighlighted={optionHighlight.grapefruit}
             isClicked={optionClick.grapefruit}
             value="grapefruit"
           >
             Grapefruit
           </SelectItem>
           <SelectItem
-            className={optionClass.lime}
+            isHighlighted={optionHighlight.lime}
             isClicked={optionClick.lime}
             value="lime"
           >
@@ -104,11 +127,16 @@ export const Select = ({ mode, label, ...props }) => {
   );
 };
 
-const SelectItem = ({ children, className, value, isClicked = false }) => {
-  let _className = styles.selectItem;
+const SelectItem = ({
+  children,
+  value,
+  isClicked = false,
+  isHighlighted = false,
+}) => {
+  let _className = styles.selectListItem;
 
-  if (className === "itemHighlight") {
-    _className = styles.selectItemHighlight;
+  if (isHighlighted) {
+    _className = styles.selectListItemHighlight;
   }
   return (
     <li className={_className} value={value}>
