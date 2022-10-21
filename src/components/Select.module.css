@@ -20,6 +20,7 @@
 }
 
 .select.active,
+.select:hover,
 .select:focus {
   /* removes browser's default focus style */
   outline: none;
