@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import propTypes from "prop-types";
 import styles from "./Select.module.css";
 import { Icon } from "./Icon";
 import { ICONS } from "./assets/icon_paths";
@@ -7,7 +8,7 @@ import { ICONS } from "./assets/icon_paths";
  * The logic and style for this component was adapted from
  * https://developer.mozilla.org/en-US/docs/Learn/Forms/How_to_build_custom_form_controls
  */
-export const Select = ({ mode, label, items = [], ...props }) => {
+export const Select = ({ label, items = [], ...props }) => {
   const initialOptionHighlight = {};
   for (const item of items) {
     initialOptionHighlight[item.value] = false;
@@ -139,4 +140,21 @@ const SelectItem = ({
       {isClicked && <Icon iconPath={ICONS.CHECKED} size={24} />}
     </li>
   );
+};
+
+Select.propTypes = {
+  /**
+   * Default text
+   */
+  label: propTypes.string,
+  /**
+   * array of options. Each option has a value and a label.
+   * The label will be displayed.
+   */
+  items: propTypes.arrayOf(
+    propTypes.exact({
+      value: propTypes.string,
+      label: propTypes.string,
+    })
+  ),
 };
