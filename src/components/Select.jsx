@@ -7,16 +7,16 @@ import { ICONS } from "./assets/icon_paths";
  * The logic and style for this component was adapted from
  * https://developer.mozilla.org/en-US/docs/Learn/Forms/How_to_build_custom_form_controls
  */
-export const Select = ({ mode, label, ...props }) => {
-  const initialOptionHighlight = {
-    grapefruit: false,
-    lime: false,
-  };
+export const Select = ({ mode, label, items = [], ...props }) => {
+  const initialOptionHighlight = {};
+  for (const item of items) {
+    initialOptionHighlight[item.value] = false;
+  }
 
-  const initialOptionClick = {
-    grapefruit: false,
-    lime: false,
-  };
+  const initialOptionClick = {};
+  for (const item of items) {
+    initialOptionClick[item.value] = false;
+  }
 
   const [optionHighlight, setOptionHighlight] = useState(
     initialOptionHighlight
@@ -30,7 +30,7 @@ export const Select = ({ mode, label, ...props }) => {
   const highlightOption = (event) => {
     const name = event.target.getAttribute("value");
     setOptionHighlight({
-      ...initialOptionHighlight,
+      ...initialOptionHighlight, //highlight is removed from other items
       [name]: true,
     });
   };
@@ -41,7 +41,7 @@ export const Select = ({ mode, label, ...props }) => {
 
     const name = event.target.getAttribute("value");
     setOptionClick({
-      ...initialOptionClick,
+      ...initialOptionClick, //selection is removed from other items
       [name]: true,
     });
   };
@@ -52,6 +52,7 @@ export const Select = ({ mode, label, ...props }) => {
 
   const closeOptionList = () => {
     setListIsHidden(true);
+    //remove highlight when list closes
     setOptionHighlight({
       ...initialOptionHighlight,
     });
@@ -106,21 +107,17 @@ export const Select = ({ mode, label, ...props }) => {
           onClick={selectOption}
           className={styles.selectList}
         >
-          {/* container for other options */}
-          <SelectItem
-            isHighlighted={optionHighlight.grapefruit}
-            isClicked={optionClick.grapefruit}
-            value="grapefruit"
-          >
-            Grapefruit
-          </SelectItem>
-          <SelectItem
-            isHighlighted={optionHighlight.lime}
-            isClicked={optionClick.lime}
-            value="lime"
-          >
-            Lime
-          </SelectItem>
+          {/* container for each option */}
+          {items.map((item) => (
+            <SelectItem
+              isHighlighted={optionHighlight[item.value]}
+              isClicked={optionClick[item.value]}
+              key={item.value}
+              value={item.value}
+            >
+              {item.label}
+            </SelectItem>
+          ))}
         </ul>
       )}
     </div>
@@ -133,13 +130,11 @@ const SelectItem = ({
   isClicked = false,
   isHighlighted = false,
 }) => {
-  let _className = styles.selectListItem;
-
-  if (isHighlighted) {
-    _className = styles.selectListItemHighlight;
-  }
+  const className = isHighlighted
+    ? styles.selectListItemHighlight
+    : styles.selectListItem;
   return (
-    <li className={_className} value={value}>
+    <li className={className} value={value}>
       {children}
       {isClicked && <Icon iconPath={ICONS.CHECKED} size={24} />}
     </li>
