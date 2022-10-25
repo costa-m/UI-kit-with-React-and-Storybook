@@ -15,38 +15,38 @@ export default {
 
 const Template = (args) => <Select {...args} />;
 
-export const WithTwoItems = Template.bind({});
-WithTwoItems.args = {
+export const WithTwoOptions = Template.bind({});
+WithTwoOptions.args = {
   label: "Choose a fruit",
-  items: [
+  options: [
     { value: "grapefruit", label: "Grapefruit" },
     { value: "lime", label: "Lime" },
   ],
 };
 
-export const WithThreeItems = Template.bind({});
-WithThreeItems.args = {
+export const WithThreeOptions = Template.bind({});
+WithThreeOptions.args = {
   label: "Choose a fruit",
-  items: [
+  options: [
     { value: "grapefruit", label: "Grapefruit" },
     { value: "banana", label: "Banana" },
     { value: "lime", label: "Lime" },
   ],
 };
 
-export const WithNoItems = Template.bind({});
-WithNoItems.args = {
-  label: "no items",
+export const WithNoOptions = Template.bind({});
+WithNoOptions.args = {
+  label: "no options",
 };
 
-export const WithManyItems = Template.bind({});
-WithManyItems.args = {
+export const WithManyOptions = Template.bind({});
+WithManyOptions.args = {
   label: "Choose a fruit",
-  items: [
+  options: [
     { value: "grapefruit", label: "Grapefruit" },
     { value: "banana", label: "Banana" },
     { value: "lime", label: "Lime" },
-    { value: "lime 2", label: "Lime" },
+    { value: "lime", label: "Lime" },
     { value: "pineapple", label: "Pineapple" },
     { value: "apple", label: "Apple" },
   ],
